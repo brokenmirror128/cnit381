@@ -37,7 +37,7 @@ headers = {'Content-Type': 'application/yang-data+json',
 # Bot Details
 bot_email = '381bot11@webex.bot'
 teams_token = 'NDBjMWEwZWUtMTNhMS00YTgwLTk4MjQtY2RjYWVlZDdjZTRiN2FjNzRiNTYtYjVh_P0A1_b34062fa-24f1-480f-a815-05d10d8cf4f2'
-bot_url = "https://12a2-96-41-242-188.ngrok.io/"
+bot_url = "https://895e-96-41-242-188.ngrok.io/"
 bot_app_name = 'CNIT-381 Network Auto Chat Bot'
 
 # Create a Bot Object
