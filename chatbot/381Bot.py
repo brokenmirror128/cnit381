@@ -279,7 +279,7 @@ def nuke(incoming_msg):
            
 def o7(incoming_msg):
     response = Response()
-    response.text += "      _.-^^---....,,--      \n"
+    response.text = "      _.-^^---....,,--      \n"
     response.text += "  _--                  --_   \n"
     response.text += " <                        >) \n"
     response.text += " |                         | \n"
