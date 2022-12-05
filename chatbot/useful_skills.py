@@ -42,8 +42,7 @@ def get_configured_interfaces(url_base,headers,username,password):
                             headers=headers,
                             verify=False
                             )
-    return response.json()["ietf-interfaces:interfaces"]["interface"]
-
+    return response.json()["ietf-interfaces:interfaces"]["interface"]    
 
 if __name__ == "__main__":
     import routers
@@ -65,3 +64,35 @@ if __name__ == "__main__":
                                 intf["ietf-ip:ipv4"]["address"][0]["netmask"]))
         except KeyError:
             print("IP Address: UNCONFIGURED\n")
+    
+    def get_cpu():
+        url = url_base + "/data/Cisco-IOS-XE-process-cpu-oper:cpu-usage/cpu-utilization/five-seconds"
+        
+        # perform get on url
+        response = requests.get(url,
+                                auth=(USER, PASS),
+                                headers=headers,
+                                verify=False
+                               )
+        #print
+        return response.json()['Cisco-IOS-XE-process-cpu-oper:five-secons']
+    
+    def get_mem():
+        url = url_base + "/data/Cisco-IOS-XE-memory-oper:memory-statistics/memory-statistic=Processor"
+        
+        response = requests.get(url,
+                                auth=(USER, PASS),
+                                headers=headers,
+                                verify=False
+                               )
+        data = response.json()["Cisco-IOS-XE-memory-oper:memory-statistic"]
+        print("Name: ", data["name"])
+        used,free = 0,0
+        try:
+            used = int(data["used-memory"])
+            free = int(data["free-memory"])
+            except KeyError:
+                print("Json Error")
+            print()
+        return (used/(used+free)) * 100, (free/(used+free)) * 100
+        
