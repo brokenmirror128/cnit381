@@ -279,19 +279,12 @@ def nuke(incoming_msg):
            
 def o7(incoming_msg):
     response = Response()
-    response.text = "      _.-^^---....,,--      \n"
-    response.text += "  _--                  --_   \n"
-    response.text += " <                        >) \n"
-    response.text += " |                         | \n"
-    response.text += "  \._                   _./ \n"
-    response.text += "     ```--. . , ; .--``` \n"
-    response.text += "           | |   |  \n"
-    response.text += "        .-=||  | |=-. \n"
-    response.text += "        `-=#$%&%$#=-` \n"
-    response.text += "           | ;  :|   \n"
-    response.text += "  _____.,-#%&$@%#&#~,._____ \n"
+    response.text = "RIP"
+    u = "https://media.giphy.com/media/XUFPGrX5Zis6Y/giphy.gif"
+    response.link= u
+
     
-   # response += curl -H "Authorization: NDBjMWEwZWUtMTNhMS00YTgwLTk4MjQtY2RjYWVlZDdjZTRiN2FjNzRiNTYtYjVh_P0A1_b34062fa-24f1-480f-a815-05d10d8cf4f2" https://webexapis.com/v1/contents/Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL0NPTlRFTlQvZWZjODU5ZDAtNzRiOS0xMWVkLTgzNjgtNTM3MTEzZjljMDRhLzA
+  
     
     return response
 
