@@ -152,7 +152,7 @@ def check_bgp(incoming_msg):
     response.text = "Gathering BGP Information from BGP peers...\n\n"
 
     bgp = BGP_Neighbors_Established()
-    status = bgp.setup('.\routers.yml')
+    status = bgp.setup('testbed/routers.yml')
     if status != "":
         response.text += status
         return response
