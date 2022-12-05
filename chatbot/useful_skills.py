@@ -91,8 +91,8 @@ if __name__ == "__main__":
         try:
             used = int(data["used-memory"])
             free = int(data["free-memory"])
-            except KeyError:
-                print("Json Error")
-            print()
+        except KeyError:
+            print("Json Error")
+        print()
         return (used/(used+free)) * 100, (free/(used+free)) * 100
         
