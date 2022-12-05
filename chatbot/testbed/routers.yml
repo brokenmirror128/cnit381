@@ -1,1 +1,28 @@
+devices:
+  R1:
+    connections:
+      cli:
+        ip: 172.16.0.1
+        protocol: ssh
+    credentials:
+      default:
+        password: 'cisco123!'
+        username: cisco
+      enable:
+        password: 'cisco123!'
+    os: iosxe
+    type: iosxe
+  R2:
+    connections:
+      cli:
+        ip: 172.16.0.2
+        protocol: ssh
+    credentials:
+      default:
+        password: 'cisco123!'
+        username: cisco
+      enable:
+        password: 'cisco123!'
+    os: iosxe
+    type: iosxe
 
