@@ -280,7 +280,7 @@ def nuke(incoming_msg):
 def o7(incoming_msg):
     response = Response()
     response.text = "RIP"
-    u = "https://media.giphy.com/media/XUFPGrX5Zis6Y/giphy.gif"
+    u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link= u
 
     
