@@ -113,3 +113,25 @@ def current_time(incoming_msg):
         TZ=timezone_name, TIME=cur_time, DATE=cur_date
     )
     return reply
+
+def create_message(rid, msgtxt):
+    headers = {
+        "content-type": "application/json; charset=utf-8",
+        "authorization": "Bearer " + teams_token,
+    }
+
+    url = "https://api.ciscospark.com/v1/messages"
+    data = {"roomId": rid,"attachments":[], "markdown": msgtxt}
+    response = requests.post(url, json=data, headers=headers)
+    return response.json()
+
+def create_message_with_attachment(rid, msgtxt, attachment):
+    headers = {
+        "content-type": "application/json; charset=utf-8",
+        "authorization": "Bearer " + teams_token,
+    }
+
+    url = "https://api.ciscospark.com/v1/messages"
+    data = {"roomId": rid, "attachments": [attachment], "markdown": msgtxt}
+    response = requests.post(url, json=data, headers=headers)
+    return response.json()
