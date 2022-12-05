@@ -172,7 +172,7 @@ def check_int(incoming_msg):
     response.text = "Gathering  Information...\n\n"
 
     mon = MonitorInterfaces()
-    status = mon.setup('routers.yml')
+    status = mon.setup('testbed/routers.yml')
     if status != "":
         response.text += status
         return response
