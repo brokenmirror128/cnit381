@@ -110,6 +110,6 @@ class BGP_Neighbors_Established():
 if __name__ == "__main__":
     # test functions
     bgp = BGP_Neighbors_Established()
-    bgp.setup('testbed/routers.yml')
+    bgp.setup('routers.yml')
     bgp.learn_bgp()
     bgp.check_bgp()
