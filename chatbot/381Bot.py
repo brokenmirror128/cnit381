@@ -292,11 +292,7 @@ def o7(incoming_msg):
     response.text += "  _____.,-#%&$@%#&#~,._____ \n"
     
    # response += curl -H "Authorization: NDBjMWEwZWUtMTNhMS00YTgwLTk4MjQtY2RjYWVlZDdjZTRiN2FjNzRiNTYtYjVh_P0A1_b34062fa-24f1-480f-a815-05d10d8cf4f2" https://webexapis.com/v1/contents/Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL0NPTlRFTlQvZWZjODU5ZDAtNzRiOS0xMWVkLTgzNjgtNTM3MTEzZjljMDRhLzA
-    curl --request POST \
-         --header "Authorization: Bearer NDBjMWEwZWUtMTNhMS00YTgwLTk4MjQtY2RjYWVlZDdjZTRiN2FjNzRiNTYtYjVh_P0A1_b34062fa-24f1-480f-a815-05d10d8cf4f2" \
-         --header "Content-Type: application/json" \
-         --data '{"roomId":"Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZWEwNjM2NzAtNmYzYy0xMWVkLTgxOGMtMGIzY2E2Mzg0NDJl","text":"NUKE","files":["https://webexapis.com/v1/contents/Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL0NPTlRFTlQvZWZjODU5ZDAtNzRiOS0xMWVkLTgzNjgtNTM3MTEzZjljMDRhLzA"]}' \
-         https://webexapis.com/v1/messages      
+    
     return response
 
 
