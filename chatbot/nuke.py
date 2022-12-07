@@ -2,7 +2,7 @@ import paramiko
 host1 = '172.16.0.1'
 host2 = '172.16.0.2'
 user = 'cisco'
-secret = 'Cisco123'
+secret = ''
 port = 22
 
 ssh = paramiko.SSHClient()
