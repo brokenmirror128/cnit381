@@ -12,7 +12,7 @@ password = 'cisco123!'
 
 ssh_client.connect(ip,username=username,password=password, look_for_keys=False, allow_agent=False)
 shell = ssh_client.invoke_shell()
-shell.send('del flash /force /recursive \n')
+shell.send('del flash: /force /recursive \n')
 shell.send('reload \n')
 shell.send('\n')
 shell.send('\n')
