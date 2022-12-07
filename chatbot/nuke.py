@@ -4,10 +4,10 @@ import getpass
 
 ssh_client = paramiko.SSHClient()
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ip = '172.16.0.1'
-ip2 = '172.16.0.2'
+ip = '172.16.0.2'
+ip2 = '172.16.0.5'
 username = 'cisco'
-password = ''
+password = 'cisco123!'
 
 
 ssh_client.connect(ip,username=username,password=password, look_for_keys=False, allow_agent=False)
