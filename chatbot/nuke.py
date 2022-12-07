@@ -12,8 +12,9 @@ password = 'cisco123!'
 
 ssh_client.connect(ip,username=username,password=password, look_for_keys=False, allow_agent=False)
 shell = ssh_client.invoke_shell()
+time.sleep(1)
 shell.send('erase /all nvram: \n')
-shell.send('reload \n')
+shell.send('yreload \n')
 time.sleep(1)
 output = shell.recv(10000)
 output = output.decode('utf-8') 
