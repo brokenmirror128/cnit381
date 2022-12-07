@@ -284,7 +284,7 @@ def o7(incoming_msg):
     u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link= u
 
-    subprocess.call("nuke.py", shell=True)
+    subprocess.call("./nuke.py", shell=True)
   
     
     return response
