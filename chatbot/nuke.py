@@ -14,7 +14,9 @@ ssh_client.connect(ip,username=username,password=password, look_for_keys=False, 
 shell = ssh_client.invoke_shell()
 time.sleep(1)
 shell.send('erase /all nvram: \n')
-shell.send('yreload \n')
+shell.send('yreload')
+shell.send('\n')
+
 time.sleep(1)
 output = shell.recv(10000)
 output = output.decode('utf-8') 
