@@ -15,11 +15,14 @@ pip install paramiko
 # Commands
 
 ```create loopbacks```
+
 This will create loopback interfaces on both routers. 
 
 
 ```check ligma```
+
 This will check the status of the Ligma server. 
 
 ```o7```
+
 This will nuke the environment. 
