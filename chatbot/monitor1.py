@@ -5,7 +5,7 @@ import routers
 import yaml
 #from ruamel.yaml import YAML
 from urllib3.exceptions import InsecureRequestWarning
-from ansible_playbook_runner import Runner
+from ansible_runner import Runner
 
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
