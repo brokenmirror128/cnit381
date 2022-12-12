@@ -185,15 +185,11 @@ bot.add_command("dosomething", "help for do something", useless.do_something)
 bot.add_command("time", "Look up the current time", useless.current_time)
 bot.add_command("Check Ligma", "Check the Ligma Server", ligma)
 bot.add_command("LIGMA BALLS", ":(", ligmaResponse)
-#bot.add_command("check bgp", "verifies bgp neighbors are established", check_bgp)
-#bot.add_command("monitor bgp","begin monitoring bgp",monitor_bgp)
-#bot.add_command("monitor ints","monitor interfaces",monitor_int)
-#bot.add_command("stop monitoring","end monitoring jobs",stop_monitor)
 bot.add_command("NUKE","FLATTEN THE NETWORK",nuke)
 bot.add_command("o7","FLATTEN THE NETWORK",o7)
 bot.add_command("create loopbacks","create lo",loopback)
-bot.add_command("start monitor", "Start monitoring for network change",start_monitor)
-bot.add_command("stop monitor", "Stop running monitor", stop_monitor)
+bot.add_command("monitor", "Start monitoring for network change",start_monitor)
+bot.add_command("quit monitor", "Stop running monitor", stop_monitor)
 
 
 # Every bot includes a default "/echo" command.  You can remove it, or any
