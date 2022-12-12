@@ -1,3 +1,4 @@
+#used to connect to routers' loopback addresses
 router1 = {"host":"1.1.1.1",
             "port":"830",
             "username":"cisco",
