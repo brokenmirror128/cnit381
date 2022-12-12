@@ -23,17 +23,14 @@ This will create loopback interfaces on both routers.
 
 This will check the status of the Ligma server. 
 
-```check bgp```
+```monitor```
 
-This will {}
+This will identify changes in the interface ip address and allow
 
-```monitor bgp```
 
-This will monitor BGP between both routers.
+```quit monitor```
 
-```stop monitor```
-
-This will stop the monitoring of BGP on both routers.
+This will stop the monitoring of the vpn.
 
 ```o7```
 
