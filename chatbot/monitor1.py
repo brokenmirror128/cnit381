@@ -1,9 +1,9 @@
+#libraries and utilites 
 import requests
 import json
 import time
 import xrouters
 import yaml
-#from ruamel.yaml import YAML
 from urllib3.exceptions import InsecureRequestWarning
 from ansible_runner import Runner
 
@@ -21,7 +21,7 @@ def run_monitor():
     headers = {'Content-Type': 'application/yang-data+json',
             'Accept': 'application/yang-data+json'}
 
-
+    #set global variable of interface ip address of new vs old
     url = url_base + "/data/ietf-interfaces:interfaces"
     global brach_g1_ip
     global old_g1_ip
@@ -29,41 +29,37 @@ def run_monitor():
     old_g1_ip = ""
 
 
-    #Start a timer to run the request per the time set
+    #Start a timer to schedule event checks
     starttime = time.time()
-    #Make this a global to be called in webextbot.py
     global monitor_flag
-    
     monitor_flag = True
 
     while monitor_flag == True:
 
-        # this statement performs a GET on the specified url
+        # GET on the url
         response = requests.get(url,
                             auth=(device_username, device_password),
                             headers=headers,
                             verify=False
                             )
-
+        #grab all interfaces
         intf_list = response.json()["ietf-interfaces:interfaces"]["interface"]
 
         
 
-        #Checking the list of interfaces for Gig1 and comparing to see if it changes
-        
+        #Checking list of interfaces for Gig1 and see if it changed
         for intf in intf_list:
             if intf["name"] == "GigabitEthernet1":
                 g1_ip_new = intf["ietf-ip:ipv4"]["address"][0]["ip"]
 
                 if g1_ip_new != branch_g1_ip:
 
-                    #Set New IP
+                    #Setting ip address
                     old_g1_ip = branch_g1_ip
                     branch_g1_ip = g1_ip_new
                     print("IP address for GigabitEthernet2 has been updated to " + g1_ip_new,
                     ", and the vpn configuration has been updated")
 
-                    #Edit the ansible monitor file and update with the correct new IP address using ruamel.yaml
                     yaml = YAML()
                     yaml.preserve_quotes = True
 
@@ -79,8 +75,7 @@ def run_monitor():
                         f.close()
 
                     Runner(['inventory'],'vpnreset.yaml').run()
-                    #CALL THE ANSIBLE SCRIPT HERE
+                    
 
-
-        #Setting up the sleep time after executing the above code
+        #sleep timer
         time.sleep(10 - time.time() % 10)
