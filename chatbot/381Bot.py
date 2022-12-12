@@ -13,18 +13,15 @@ from webexteamsbot.models import Response
 
 ### Utilities Libraries
 import routers
+import monitor1 as monitor1
 import useless_skills as useless
 import useful_skills as useful
-from BGP_Neighbors_Established import BGP_Neighbors_Established
-from Monitor_int import MonitorInterfaces
+
 
 # Router Info 
 device_address = routers.router1['host']
 device_username = routers.router1['username']
 device_password = routers.router1['password']
-
-### Table building ###
-from tabulate import tabulate
 
 # Make Thread list
 threads = list()
@@ -147,128 +144,27 @@ def loopback(incoming_msg):
     response.text = "The interfaces have been created"
     return response
 
-def check_bgp(incoming_msg):
-    """Return BGP Status
-    """
+def start_monitor(incoming_msg):
+
     response = Response()
-    response.text = "Gathering BGP Information from BGP peers...\n\n"
+    response.markdown = "Monitor starting..."
+    #Start the thread for the monitor
+    th = threading.Thread(target=monitor1.run_monitor)
+    threads.append(th)
 
-    bgp = BGP_Neighbors_Established()
-    status = bgp.setup('testbed/routers.yml')
-    if status != "":
-        response.text += status
-        return response
-
-    status = bgp.learn_bgp()
-    if status != "":
-        response.text += status
-
-    response.text += bgp.check_bgp()
-
-    return response
-
-def check_int(incoming_msg):
-    """Find down interfaces
-    """
-    response = Response()
-    response.text = "Gathering  Information...\n\n"
-
-    mon = MonitorInterfaces()
-    status = mon.setup('testbed/routers.yml')
-    if status != "":
-        response.text += status
-        return response
-
-    status = mon.learn_interface()
-    if status == "":
-        response.text += "All Interfaces are OK!"
-    else:
-        response.text += status
-
-    return response
-
-def monitor_int(incoming_msg):
-    """Monitor interfaces in a thread
-    """
-    response = Response()
-    response.text = "Monitoring interfaces...\n\n"
-    monitor_int_job(incoming_msg)
-    th = threading.Thread(target=monitor_int_job, args=(incoming_msg,))
-    threads.append(th)  # appending the thread to the list
-
-    # starting the threads
-    for th in threads:
-        th.start()
-
-    # waiting for the threads to finish
-    for th in threads:
-        th.join()
-
-    return response
-
-def monitor_int_job(incoming_msg):
-    response = Response()
-    msgtxt_old=""
-    global exit_flag
-    if exit_flag == False:
-        msgtxt = check_int(incoming_msg)
-        if msgtxt_old != msgtxt:
-            print(msgtxt.text)
-            useless.create_message(incoming_msg.roomId, msgtxt.text)
-        msgtxt_old = msgtxt
-        time.sleep(20)
-
-    print("exited thread")
-    exit_flag = False
-
-    return response
-
-def monitor_bgp_job(incoming_msg):
-    response = Response()
-    msgtxt_old=""
-    global exit_flag
-    if exit_flag == False:
-        msgtxt = check_bgp(incoming_msg)
-        if msgtxt_old != msgtxt:
-            print(msgtxt.text)
-            useless.create_message(incoming_msg.roomId, msgtxt.text)
-        msgtxt_old = msgtxt
-        time.sleep(20)
-
-    print("exited thread")
-    exit_flag = False
+    th.start()
 
     return response
 
 def stop_monitor(incoming_msg):
-    """Monitor interfaces in a thread
-    """
+
     response = Response()
-    response.text = "Stopping all Monitors...\n\n"
-    global exit_flag
-    exit_flag = True
-    time.sleep(5)
-    response.text += "Done!..\n\n"
-
-    return response
-
-def monitor_bgp(incoming_msg):
-    """Monitor interfaces in a thread
-    """
-    response = Response()
-    response.text = "Monitoring bgp...\n\n"
-    monitor_bgp_job(incoming_msg)
-    th = threading.Thread(target=monitor_bgp_job, args=(incoming_msg,))
-    threads.append(th)  # appending the thread to the list
-
-    # starting the threads
-    for th in threads:
-        th.start()
-
-    # waiting for the threads to finish
+    response.markdown = "Stopping the monitor, please wait...\n" 
+    monitor1.monitor_flag = False
     for th in threads:
         th.join()
-
+        del(th)
+    time.sleep(5)
     return response
 
 def nuke(incoming_msg):
@@ -285,12 +181,11 @@ def o7(incoming_msg):
     u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link = u
 
-    os.system("python ./nuke.py") 
+    exec(open('./nuke.py').read())
+  
     
     return response
-
-
-    
+ 
 
 # Set the bot greeting.
 bot.set_greeting(greeting)
@@ -308,14 +203,15 @@ bot.add_command("dosomething", "help for do something", useless.do_something)
 bot.add_command("time", "Look up the current time", useless.current_time)
 bot.add_command("Check Ligma", "Check the Ligma Server", ligma)
 bot.add_command("LIGMA BALLS", ":(", ligmaResponse)
-bot.add_command("check bgp", "verifies bgp neighbors are established", check_bgp)
-bot.add_command("monitor bgp","begin monitoring bgp",monitor_bgp)
-bot.add_command("monitor ints","monitor interfaces",monitor_int)
-bot.add_command("stop monitoring","end monitoring jobs",stop_monitor)
+#bot.add_command("check bgp", "verifies bgp neighbors are established", check_bgp)
+#bot.add_command("monitor bgp","begin monitoring bgp",monitor_bgp)
+#bot.add_command("monitor ints","monitor interfaces",monitor_int)
+#bot.add_command("stop monitoring","end monitoring jobs",stop_monitor)
 bot.add_command("NUKE","FLATTEN THE NETWORK",nuke)
 bot.add_command("o7","FLATTEN THE NETWORK",o7)
 bot.add_command("create loopbacks","create lo",loopback)
-
+bot.add_command("start monitor", "Start monitoring for network change",start_monitor)
+bot.add_command("stop monitor", "Stop running monitor", stop_monitor)
 
 
 # Every bot includes a default "/echo" command.  You can remove it, or any
