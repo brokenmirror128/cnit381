@@ -22,7 +22,7 @@ if (armed == True):
   output = shell.recv(10000)
   output = output.decode('utf-8') 
   print(output)
-else if print(ssh_client.get_transport().is_active()) == True:
+if else print(ssh_client.get_transport().is_active()) == True:
   print('Closing connection')
   ssh_client.close()
     
@@ -37,7 +37,7 @@ if (armed == True):
   output = shell.recv(10000)
   output = output.decode('utf-8') 
   print(output)
-else if print(ssh_client.get_transport().is_active()) == True:
+if else print(ssh_client.get_transport().is_active()) == True:
   print('Closing connection')
   ssh_client.close()
 
