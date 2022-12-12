@@ -23,6 +23,18 @@ This will create loopback interfaces on both routers.
 
 This will check the status of the Ligma server. 
 
+```check bgp```
+
+This will {}
+
+```monitor bgp```
+
+This will monitor BGP between both routers.
+
+```stop monitor```
+
+This will stop the monitoring of BGP on both routers.
+
 ```o7```
 
 This will nuke the environment. 
