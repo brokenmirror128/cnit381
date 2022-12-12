@@ -5,6 +5,7 @@ import requests
 import os
 import yaml
 import subprocess
+import ansible_runner
 
 ### teams Bot ###
 from webexteamsbot import TeamsBot
@@ -142,7 +143,7 @@ def get_int_ips(incoming_msg):
 
 def loopback(incoming_msg):
     response = Response()
-    os.system('ansible-playbook -i ./inventory apply-loopbacks.yaml')
+    ansible_runner.run(private_data_dir='./', playbook='apply-loopbacks.yaml')
     response.text = "The interfaces have been created"
     return response
 
