@@ -67,18 +67,18 @@ def run_monitor():
                     yaml = YAML()
                     yaml.preserve_quotes = True
 
-                    with open("ansiblevpnreset.yaml") as f:
+                    with open("vpnreset.yaml") as f:
                         list_file = yaml.load(f)
                         f.close()
 
                     for i in list_file:
                         i["vars"]["address"] = g2_ip_new
 
-                    with open("ansiblevpnreset.yaml","w") as f:
+                    with open("vpnreset.yaml","w") as f:
                         yaml.dump(list_file, f)
                         f.close()
 
-                    Runner(['inventory'],'ansiblevpnreset.yaml').run()
+                    Runner(['inventory'],'vpnreset.yaml').run()
                     #CALL THE ANSIBLE SCRIPT HERE
 
 
