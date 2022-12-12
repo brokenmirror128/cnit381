@@ -1,3 +1,4 @@
+#used to connect to routers' Gig1 interfaces
 router1 = {"host":"172.16.0.1",
             "port":"830",
             "username":"cisco",
