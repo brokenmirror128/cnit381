@@ -1,18 +1,10 @@
 ---
-  - name: Add lo# interfaces
+  - name: Add lo1 interfaces
     hosts: routers
     gather_facts: false
     connection: network_cli
 
     tasks:
-      - name: Locate router ID per host
-        ios_command:
-                commands: show running-config | include router-id
-        register: rid_raw
-
-      - name: Format RID as single digit
-        shell: echo {{ rid_raw }} | sed 's@^[^0-9]*\([0-9]\+\).*@\1@'
-        register: rid
 
       - name: Loopback Interface Configuration
         ios_config:
