@@ -84,30 +84,19 @@ def arp_list(incoming_msg):
     return response
 
 def ligma(incoming_msg):
-    """Check the Ligma Server
-    """
     sender = bot.teams.people.get(incoming_msg.personId)
-
-    # Create a Response object and craft a reply in Markdown.
     response = Response()
-           
     response.markdown = "Whats Ligma?"
     return response
 
 def ligmaResponse(incoming_msg):
-    """Check the Ligma Server
-    """
     sender = bot.teams.people.get(incoming_msg.personId)
-
-    # Create a Response object and craft a reply in Markdown.
     response = Response()
-           
     response.markdown = ":("
     return response
 
 def sys_info(incoming_msg):
-    """Return the system info
-    """
+    """Return the system info"""
     response = Response()
     info = useful.get_sys_info(url_base, headers,device_username,device_password)
 
@@ -171,7 +160,6 @@ def nuke(incoming_msg):
     response = Response()
     response.text = "Are you sure you want to do this? THIS WILL FLATTEN THE NETWORK!!!\n\n"
     response.text += "Type ' o7 ' to nuke the network."
-    
     return response
            
            
@@ -180,10 +168,7 @@ def o7(incoming_msg):
     response.text = "RIP"
     u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link = u
-
     exec(open('./nuke.py').read())
-  
-    
     return response
  
 
@@ -191,12 +176,9 @@ def o7(incoming_msg):
 bot.set_greeting(greeting)
 
 # Add Bot's Commmands
-bot.add_command(
-    "arp list", "See what ARP entries I have in my table.", arp_list)
-bot.add_command(
-    "system info", "Checkout the device system info.", sys_info)
-bot.add_command(
-    "show interfaces", "List all interfaces and their IP addresses", get_int_ips)
+bot.add_command("arp list", "See what ARP entries I have in my table.", arp_list)
+bot.add_command("system info", "Checkout the device system info.", sys_info)
+bot.add_command("show interfaces", "List all interfaces and their IP addresses", get_int_ips)
 bot.add_command("attachmentActions", "*", useless.handle_cards)
 bot.add_command("showcard", "show an adaptive card", useless.show_card)
 bot.add_command("dosomething", "help for do something", useless.do_something)
