@@ -1,7 +1,7 @@
 import requests
 import json
 import time
-import routers
+import xrouters
 import yaml
 #from ruamel.yaml import YAML
 from urllib3.exceptions import InsecureRequestWarning
@@ -11,9 +11,9 @@ requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 def run_monitor():
     # Router Info 
-    device_address = routers.router2['host']
-    device_username = routers.router2['username']
-    device_password = routers.router2['password']
+    device_address = xrouters.router2['host']
+    device_username = xrouters.router2['username']
+    device_password = xrouters.router2['password']
 
     # RESTCONF Setup
     port = '443'
