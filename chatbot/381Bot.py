@@ -285,8 +285,7 @@ def o7(incoming_msg):
     u = "https://giphy.com/gifs/lil-wayne-XrNry0aqYWEhi"
     response.link = u
 
-    exec(open('./nuke.py').read())
-  
+    os.system("python ./nuke.py") 
     
     return response
 
