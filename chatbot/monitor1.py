@@ -23,10 +23,10 @@ def run_monitor():
 
 
     url = url_base + "/data/ietf-interfaces:interfaces"
-    global brach_g2_ip
-    global old_g2_ip
-    branch_g2_ip = "172.16.0.2"
-    old_g2_ip = ""
+    global brach_g1_ip
+    global old_g1_ip
+    branch_g1_ip = "172.16.0.2"
+    old_g1_ip = ""
 
 
     #Start a timer to run the request per the time set
@@ -49,18 +49,18 @@ def run_monitor():
 
         
 
-        #Checking the list of interfaces for Gig2 and comparing to see if it changes
+        #Checking the list of interfaces for Gig1 and comparing to see if it changes
         
         for intf in intf_list:
-            if intf["name"] == "GigabitEthernet2":
-                g2_ip_new = intf["ietf-ip:ipv4"]["address"][0]["ip"]
+            if intf["name"] == "GigabitEthernet1":
+                g1_ip_new = intf["ietf-ip:ipv4"]["address"][0]["ip"]
 
-                if g2_ip_new != branch_g2_ip:
+                if g1_ip_new != branch_g1_ip:
 
                     #Set New IP
-                    old_g2_ip = branch_g2_ip
-                    branch_g2_ip = g2_ip_new
-                    print("IP address for GigabitEthernet2 has been updated to " + g2_ip_new,
+                    old_g1_ip = branch_g1_ip
+                    branch_g1_ip = g1_ip_new
+                    print("IP address for GigabitEthernet2 has been updated to " + g1_ip_new,
                     ", and the vpn configuration has been updated")
 
                     #Edit the ansible monitor file and update with the correct new IP address using ruamel.yaml
@@ -72,7 +72,7 @@ def run_monitor():
                         f.close()
 
                     for i in list_file:
-                        i["vars"]["address"] = g2_ip_new
+                        i["vars"]["address"] = g1_ip_new
 
                     with open("vpnreset.yaml","w") as f:
                         yaml.dump(list_file, f)
