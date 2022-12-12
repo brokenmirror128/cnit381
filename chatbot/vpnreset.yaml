@@ -1,25 +1,25 @@
-- name: AUTOMATIC VPN RECONNECTION
+- name: VPN RECONNECTION
   hosts: router1
   vars:
     old_address: "172.16.0.2"
-    address: "172.16.0.3"
+    address: "172.16.0.3" #identify the expected ip address to create the vpn tunnel
   gather_facts: false
   connection: network_cli
 
   tasks:
-  - name: SET NEW IPSEC ISAKMP ADDRESS
+  - name: REMOVE ISAKMP
     ios_config:
       lines:
       - no crypto isakmp key cisco address {{old_address}}
       
-  - name: REBUILD ISAKMP
+  - name: BUILD ISAKMP
     ios_config:
       lines:
       - ip access-list extended VPN-ACL
       - permit ip 1.1.1.0 0.0.0.255 2.2.2.0 0.0.0.255
       parents: crypto isakmp key cisco address {{address}}
 
-  - name: SET NEW PEER ADDRESS
+  - name: SET NEW PEER
     ios_config:
       lines:
       - no set peer {{old_address}}
