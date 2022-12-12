@@ -210,7 +210,7 @@ def monitor_int_job(incoming_msg):
     response = Response()
     msgtxt_old=""
     global exit_flag
-    while exit_flag == False:
+    if exit_flag == False:
         msgtxt = check_int(incoming_msg)
         if msgtxt_old != msgtxt:
             print(msgtxt.text)
@@ -227,7 +227,7 @@ def monitor_bgp_job(incoming_msg):
     response = Response()
     msgtxt_old=""
     global exit_flag
-    while exit_flag == False:
+    if exit_flag == False:
         msgtxt = check_bgp(incoming_msg)
         if msgtxt_old != msgtxt:
             print(msgtxt.text)
