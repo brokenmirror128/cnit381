@@ -5,11 +5,11 @@ import os
 
 ssh_client = paramiko.SSHClient()
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ip = '172.16.0.5'
-ip2 = '172.16.0.6'
+ip = '172.16.0.1'
+ip2 = '172.16.0.2'
 username = 'cisco'
 password = 'cisco123!'
-armed = False
+armed = True
 
 ssh_client.connect(ip,username=username,password=password, look_for_keys=False, allow_agent=False)
 shell = ssh_client.invoke_shell()
